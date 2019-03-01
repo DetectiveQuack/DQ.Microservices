@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  dqwebgw:
+    build: 
+      context: .
+      dockerfile: src/ApiGateways/DQ.ApiBase/Dockerfile
+    ports: 
+      - "8080:80"
