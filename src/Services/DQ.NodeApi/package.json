@@ -1,15 +1,21 @@
 {
-  "name": "sp",
+  "name": "@dq/node-api",
   "version": "1.0.0",
   "main": "app.js",
   "author": "Saffaanh Soobratty",
   "license": "MIT",
   "private": false,
   "devDependencies": {
+    "@types/express": "^4.16.1",
+    "@types/node": "^11.10.0",
     "tslint": "^5.13.1",
     "typescript": "^3.3.3333"
   },
   "dependencies": {
     "express": "^4.16.4"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "cd dist && node ./app.js"
   }
 }

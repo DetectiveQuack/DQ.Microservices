@@ -1,0 +1,16 @@
+{
+    "ReRoutes": [
+    {
+        "DownstreamPathTemplate": "/api/node/test",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "dqnode.api",
+            "Port": 80
+          }
+        ],
+        "UpstreamPathTemplate": "/api/values",
+        "UpstreamHttpMethod": [ "GET" ]
+      }
+    ]
+}

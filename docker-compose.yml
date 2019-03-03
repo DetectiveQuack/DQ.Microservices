@@ -1,9 +1,26 @@
-version: '3'
+version: '3.4'
 
 services:
+  dqnode.api:
+    build:
+      context: .
+      dockerfile: src/Services/DQ.NodeApi/Dockerfile
+    ports:
+      - "80"
+
   dqwebgw:
     build: 
       context: .
       dockerfile: src/ApiGateways/DQ.ApiBase/Dockerfile
     ports: 
       - "8080:80"
+    depends_on:
+      - dqnode.api
+      - dqauth.api
+
+  dqauth.api:
+    build: 
+      context: .
+      dockerfile: src/Services/DQ.AuthApi/Dockerfile
+    ports: 
+      - "80"

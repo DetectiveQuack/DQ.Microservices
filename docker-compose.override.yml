@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  dqnode.api:
+    environment:
+      NODE_ENV: production
+      PORT: 80
+    volumes:
+      - '.:/app'
+
+  dqwebgw:
+    environment:
+      - AuthUrl=http://dqauth.api  
+    volumes:
+      - ./src/ApiGateways/DQ.Web/apigw:/app/configuration

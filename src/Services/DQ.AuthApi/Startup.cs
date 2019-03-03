@@ -10,10 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Ocelot.Middleware;
-using Ocelot.DependencyInjection;
 
-namespace DQ.ApiBase
+namespace DQ.AuthApi
 {
     public class Startup
     {
@@ -27,17 +25,7 @@ namespace DQ.ApiBase
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var authUrl = Configuration.GetValue<string>("AuthUrl");
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            services
-                .AddAuthentication()
-                .AddJwtBearer((configureOptions) => {
-                    configureOptions.Authority = authUrl;
-                });
-
-            services.AddOcelot(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,8 +41,8 @@ namespace DQ.ApiBase
                 app.UseHsts();
             }
 
-            app.UseOcelot().Wait();
+            app.UseHttpsRedirection();
+            app.UseMvc();
         }
-
     }
 }

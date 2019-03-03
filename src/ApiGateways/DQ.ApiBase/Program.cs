@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DQ.ApiBase
 {
@@ -19,7 +20,17 @@ namespace DQ.ApiBase
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
-            var webhost = WebHost.CreateDefaultBuilder(args);
+            var builder = WebHost.CreateDefaultBuilder(args);
+
+            builder
+                .ConfigureServices(s => s.AddSingleton(builder))
+                .ConfigureAppConfiguration((config) =>
+                {
+                    config.AddJsonFile(Path.Join("configuration", "configuration.json"));
+                })
+                .UseStartup<Startup>();
+
+            return builder;
         }
     }
 }
