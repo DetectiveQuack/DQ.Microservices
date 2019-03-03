@@ -23,4 +23,4 @@ services:
       context: .
       dockerfile: src/Services/DQ.AuthApi/Dockerfile
     ports: 
-      - "80"
+      - "5001:80"

@@ -11,5 +11,10 @@ services:
   dqwebgw:
     environment:
       - AuthUrl=http://dqauth.api  
+      - ASPNETCORE_ENVIRONMENT=Development
     volumes:
       - ./src/ApiGateways/DQ.Web/apigw:/app/configuration
+
+  dqauth.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development

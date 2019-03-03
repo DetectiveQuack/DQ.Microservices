@@ -10,7 +10,11 @@
           }
         ],
         "UpstreamPathTemplate": "/api/values",
-        "UpstreamHttpMethod": [ "GET" ]
+        "UpstreamHttpMethod": [ "GET" ],
+        "AuthenticationOptions": {
+          "AuthenticationProviderKey": "Bearer",
+          "AllowedScopes": []
+      }
       }
     ]
 }
